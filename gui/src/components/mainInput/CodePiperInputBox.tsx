@@ -16,7 +16,7 @@ import { ToolbarOptions } from "./InputToolbar";
 import { Lump } from "./Lump";
 import { TipTapEditor } from "./TipTapEditor";
 
-interface ContinueInputBoxProps {
+interface CodePiperInputBoxProps {
   isLastUserInput: boolean;
   isMainInput?: boolean;
   onEnter: (
@@ -52,7 +52,7 @@ const EDIT_ALLOWED_SLASH_COMMAND_SOURCES: SlashCommandSource[] = [
   "json-custom-command",
 ];
 
-function ContinueInputBox(props: ContinueInputBoxProps) {
+function CodePiperInputBox(props: CodePiperInputBoxProps) {
   const isStreaming = useAppSelector((state) => state.session.isStreaming);
   const availableSlashCommands = useAppSelector(
     selectSlashCommandComboBoxInputs,
@@ -110,7 +110,7 @@ function ContinueInputBox(props: ContinueInputBoxProps) {
   return (
     <div
       className={`${props.hidden ? "hidden" : ""}`}
-      data-testid={`continue-input-box-${props.inputId}`}
+      data-testid={`codepiper-input-box-${props.inputId}`}
     >
       <div className={`relative flex flex-col px-2`}>
         {props.isMainInput && <Lump />}
@@ -150,4 +150,4 @@ function ContinueInputBox(props: ContinueInputBoxProps) {
   );
 }
 
-export default memo(ContinueInputBox);
+export default memo(CodePiperInputBox);

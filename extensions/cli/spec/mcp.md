@@ -16,7 +16,7 @@ MCP server configurations often require secrets (API keys, tokens, etc.) referen
 Local environment variables are checked in this priority order:
 
 - `process.env` (runtime environment variables)
-- `~/.continue/.env`
+- `~/.codepiper/.env`
 - `<workspace>/.continue/.env`
 - `<workspace>/.env`
 

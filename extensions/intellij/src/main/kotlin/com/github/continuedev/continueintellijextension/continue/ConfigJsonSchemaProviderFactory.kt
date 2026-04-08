@@ -1,7 +1,7 @@
 package com.github.continuedev.continueintellijextension.`continue`
 
 import com.github.continuedev.continueintellijextension.activities.ContinuePluginStartupActivity
-import com.github.continuedev.continueintellijextension.constants.getContinueGlobalPath
+import com.github.continuedev.continueintellijextension.constants.getCodePiperGlobalPath
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.io.StreamUtil
 import com.intellij.openapi.vfs.LocalFileSystem
@@ -22,7 +22,7 @@ class ConfigJsonSchemaProviderFactory : JsonSchemaProviderFactory {
 
 class ConfigJsonSchemaFileProvider : JsonSchemaFileProvider {
     override fun isAvailable(file: VirtualFile): Boolean {
-        return file.path.endsWith("/.continue/config.json") || file.path.endsWith("\\.continue\\config.json")
+        return file.path.endsWith("/.codepiper/config.json") || file.path.endsWith("\\.codepiper\\config.json")
     }
 
     override fun getName(): String {
@@ -36,7 +36,7 @@ class ConfigJsonSchemaFileProvider : JsonSchemaFileProvider {
                     throw IOException("Resource not found: config_schema.json")
                 }
                 val content = `is`.bufferedReader(StandardCharsets.UTF_8).use { it.readText() }
-                val filepath = Paths.get(getContinueGlobalPath(), "config_schema.json").toString()
+                val filepath = Paths.get(getCodePiperGlobalPath(), "config_schema.json").toString()
                 File(filepath).writeText(content)
                 return LocalFileSystem.getInstance().findFileByPath(filepath)
             }

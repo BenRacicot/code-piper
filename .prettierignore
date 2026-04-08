@@ -21,7 +21,7 @@ extensions/vscode/e2e/vsix
 extensions/vscode/models
 extensions/intellij/src/main/resources
 gui/dist
-**/.continueignore
+**/.codepiperignore
 .continue/rules/mintlify-formatting.md
 CHANGELOG.md
 **/continue_tutorial.py

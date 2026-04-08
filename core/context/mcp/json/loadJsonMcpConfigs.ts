@@ -22,7 +22,7 @@ import { localPathToUri } from "../../../util/pathToUri";
 import { getUriPathBasename, joinPathsToUri } from "../../../util/uri";
 
 /**
- * Loads MCP configs from JSON files in ~/.continue/mcpServers and workspace .continue/mcpServers
+ * Loads MCP configs from JSON files in ~/.codepiper/mcpServers and workspace .continue/mcpServers
  */
 export async function loadJsonMcpConfigs(
   ide: IDE,

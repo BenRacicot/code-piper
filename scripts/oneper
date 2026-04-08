@@ -42,7 +42,7 @@ show_help() {
     echo "  oneper clean                         # Clear cached VSIX files"
     echo "  oneper -h                            # Show help"
     echo ""
-    echo "VSIX files are cached in: ~/.continue/.utils/oneper/"
+    echo "VSIX files are cached in: ~/.codepiper/.utils/oneper/"
 }
 
 detect_os() {

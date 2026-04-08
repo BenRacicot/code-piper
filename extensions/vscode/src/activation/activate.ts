@@ -1,4 +1,4 @@
-import { getContinueRcPath, getTsConfigPath } from "core/util/paths";
+import { getCodePiperRcPath, getTsConfigPath } from "core/util/paths";
 import { Telemetry } from "core/util/posthog";
 import * as vscode from "vscode";
 
@@ -37,7 +37,7 @@ export async function activateExtension(context: vscode.ExtensionContext) {
 
   // Add necessary files
   getTsConfigPath();
-  getContinueRcPath();
+  getCodePiperRcPath();
 
   // Register commands and providers
   setupInlineTips(context);

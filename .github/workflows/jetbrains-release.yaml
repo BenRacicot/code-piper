@@ -423,7 +423,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: core-logs-${{ matrix.platform }}-${{ matrix.arch }}
-          path: ~/.continue/logs/core.log
+          path: ~/.codepiper/logs/core.log
 
   # Run tests and upload a code coverage report
   test:

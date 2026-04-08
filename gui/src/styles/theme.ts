@@ -1,7 +1,7 @@
 // All vscode variables https://gist.github.com/estruyf/ba49203e1a7d6868e9320a4ea480c27a
 // Examples for vscode https://github.com/githubocto/tailwind-vscode/blob/main/index.js
 
-// The current default theme is dark with blue accents
+// CodePiper default theme: dark with emerald accents (Piper brand)
 export const THEME_COLORS = {
   background: {
     vars: [
@@ -29,7 +29,7 @@ export const THEME_COLORS = {
   },
   "primary-background": {
     vars: ["--vscode-button-background"],
-    default: "#2c5aa0", // medium blue
+    default: "#059669", // emerald-600
   },
   "primary-foreground": {
     vars: ["--vscode-button-foreground"],
@@ -37,7 +37,7 @@ export const THEME_COLORS = {
   },
   "primary-hover": {
     vars: ["--vscode-button-hoverBackground"],
-    default: "#3a6db3", // lighter blue
+    default: "#10b981", // emerald-500
   },
   "secondary-background": {
     vars: ["--vscode-button-secondaryBackground"],
@@ -57,7 +57,7 @@ export const THEME_COLORS = {
   },
   "border-focus": {
     vars: ["--vscode-focusBorder"],
-    default: "#3a6db3", // lighter blue
+    default: "#10b981", // emerald-500
   },
   // Command styles are used for tip-tap editor
   "command-background": {
@@ -74,7 +74,7 @@ export const THEME_COLORS = {
   },
   "command-border-focus": {
     vars: ["--vscode-commandCenter-activeBorder"],
-    default: "#4d8bf0", // bright blue
+    default: "#34d399", // emerald-400
   },
   description: {
     vars: ["--vscode-descriptionForeground"],
@@ -145,7 +145,7 @@ export const THEME_COLORS = {
   },
   link: {
     vars: ["--vscode-textLink-foreground"],
-    default: "#5c9ce6", // medium blue
+    default: "#10b981", // emerald-500
   },
   terminal: {
     vars: ["--vscode-terminal-ansiGreen"],
@@ -157,11 +157,11 @@ export const THEME_COLORS = {
   },
   accent: {
     vars: ["--vscode-tab-activeBorderTop", "--vscode-focusBorder"],
-    default: "#4d8bf0", // bright blue
+    default: "#34d399", // emerald-400
   },
   "find-match": {
     vars: ["--vscode-editor-findMatchBackground"], // Can't get "var(--vscode-editor-findMatchBackground, rgba(237, 18, 146, 0.5))" to work
-    default: "#264f7840", // translucent blue
+    default: "#05966840", // translucent emerald
   },
   "find-match-selected": {
     vars: ["--vscode-editor-findMatchHighlightBackground"],
@@ -174,7 +174,7 @@ export const THEME_COLORS = {
   },
   "list-active": {
     vars: ["--vscode-list-activeSelectionBackground"],
-    default: "#2c5aa050", // translucent medium blue
+    default: "#05966850", // translucent emerald
   },
   "list-active-foreground": {
     vars: ["--vscode-list-activeSelectionForeground"],

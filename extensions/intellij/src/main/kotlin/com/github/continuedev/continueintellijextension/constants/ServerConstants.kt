@@ -71,16 +71,16 @@ export {
 };
 """
 
-fun getContinueGlobalPath(): String {
-  val continuePath = Paths.get(System.getProperty("user.home"), ".continue")
+fun getCodePiperGlobalPath(): String {
+  val continuePath = Paths.get(System.getProperty("user.home"), ".codepiper")
   if (Files.notExists(continuePath)) {
     Files.createDirectories(continuePath)
   }
   return continuePath.toString()
 }
 
-fun getContinueRemoteConfigPath(remoteHostname: String): String {
-  val path = Paths.get(getContinueGlobalPath(), ".configs")
+fun getCodePiperRemoteConfigPath(remoteHostname: String): String {
+  val path = Paths.get(getCodePiperGlobalPath(), ".configs")
   if (Files.notExists(path)) {
     Files.createDirectories(path)
   }
@@ -90,8 +90,8 @@ fun getContinueRemoteConfigPath(remoteHostname: String): String {
 fun getConfigJsonPath(remoteHostname: String? = null): String {
   val path =
       Paths.get(
-          if (remoteHostname != null) getContinueRemoteConfigPath(remoteHostname)
-          else getContinueGlobalPath(),
+          if (remoteHostname != null) getCodePiperRemoteConfigPath(remoteHostname)
+          else getCodePiperGlobalPath(),
           "config.json")
   if (Files.notExists(path)) {
     Files.createFile(path)
@@ -103,8 +103,8 @@ fun getConfigJsonPath(remoteHostname: String? = null): String {
 fun getConfigJsPath(remoteHostname: String? = null): String {
   val path =
       Paths.get(
-          if (remoteHostname != null) getContinueRemoteConfigPath(remoteHostname)
-          else getContinueGlobalPath(),
+          if (remoteHostname != null) getCodePiperRemoteConfigPath(remoteHostname)
+          else getCodePiperGlobalPath(),
           "config.js")
   if (Files.notExists(path)) {
     Files.createFile(path)
@@ -114,7 +114,7 @@ fun getConfigJsPath(remoteHostname: String? = null): String {
 }
 
 fun getSessionsDir(): String {
-  val path = Paths.get(getContinueGlobalPath(), "sessions")
+  val path = Paths.get(getCodePiperGlobalPath(), "sessions")
   if (Files.notExists(path)) {
     Files.createDirectories(path)
   }

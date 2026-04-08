@@ -146,12 +146,12 @@ export class VerticalDiffManager {
 
     void vscode.commands.executeCommand(
       "setContext",
-      "continue.diffVisible",
+      "codepiper.diffVisible",
       false,
     );
 
     void this.webviewProtocol.request(
-      "focusContinueInputWithoutClear",
+      "focusCodePiperInputWithoutClear",
       undefined,
     );
   }
@@ -211,7 +211,7 @@ export class VerticalDiffManager {
     streamId: string,
     toolCallId?: string,
   ) {
-    vscode.commands.executeCommand("setContext", "continue.diffVisible", true);
+    vscode.commands.executeCommand("setContext", "codepiper.diffVisible", true);
 
     // Get the current editor fileUri/range
     let editor = vscode.window.activeTextEditor;
@@ -267,7 +267,7 @@ export class VerticalDiffManager {
 
     vscode.commands.executeCommand(
       "setContext",
-      "continue.streamingDiff",
+      "codepiper.streamingDiff",
       true,
     );
 
@@ -289,7 +289,7 @@ export class VerticalDiffManager {
     } finally {
       vscode.commands.executeCommand(
         "setContext",
-        "continue.streamingDiff",
+        "codepiper.streamingDiff",
         false,
       );
     }
@@ -301,7 +301,7 @@ export class VerticalDiffManager {
     streamId: string,
     toolCallId?: string,
   ) {
-    vscode.commands.executeCommand("setContext", "continue.diffVisible", true);
+    vscode.commands.executeCommand("setContext", "codepiper.diffVisible", true);
 
     const editor = vscode.window.activeTextEditor;
     if (!editor) {
@@ -377,7 +377,7 @@ export class VerticalDiffManager {
   }): Promise<string | undefined> {
     void vscode.commands.executeCommand(
       "setContext",
-      "continue.diffVisible",
+      "codepiper.diffVisible",
       true,
     );
 
@@ -518,7 +518,7 @@ export class VerticalDiffManager {
 
     void vscode.commands.executeCommand(
       "setContext",
-      "continue.streamingDiff",
+      "codepiper.streamingDiff",
       true,
     );
 
@@ -563,7 +563,7 @@ export class VerticalDiffManager {
       this.enableDocumentChangeListener();
 
       if (abortController.signal.aborted) {
-        void vscode.commands.executeCommand("continue.rejectDiff");
+        void vscode.commands.executeCommand("codepiper.rejectDiff");
       }
 
       const fileAfterEdit = `${prefix}${streamedLines.join("\n")}${suffix}`;
@@ -588,7 +588,7 @@ export class VerticalDiffManager {
     } finally {
       void vscode.commands.executeCommand(
         "setContext",
-        "continue.streamingDiff",
+        "codepiper.streamingDiff",
         false,
       );
     }

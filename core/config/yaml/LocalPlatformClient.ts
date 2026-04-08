@@ -7,7 +7,7 @@ import {
 import * as dotenv from "dotenv";
 import { IDE } from "../..";
 import { ControlPlaneClient } from "../../control-plane/client";
-import { getContinueDotEnv } from "../../util/paths";
+import { getCodePiperDotEnv } from "../../util/paths";
 import { joinPathsToUri } from "../../util/uri";
 
 export class LocalPlatformClient implements PlatformClient {
@@ -18,7 +18,7 @@ export class LocalPlatformClient implements PlatformClient {
   ) {}
 
   /**
-   * searches for the first valid secret file in order of ~/.continue/.env, <workspace>/.continue/.env, <workspace>/.env
+   * searches for the first valid secret file in order of ~/.codepiper/.env, <workspace>/.codepiper/.env, <workspace>/.env
    */
   private async findSecretInEnvFiles(
     fqsn: FQSN,
@@ -44,11 +44,11 @@ export class LocalPlatformClient implements PlatformClient {
 
   private findSecretInLocalEnvFile(fqsn: FQSN): string | undefined {
     try {
-      const dotEnv = getContinueDotEnv();
+      const dotEnv = getCodePiperDotEnv();
       return dotEnv[fqsn.secretName];
     } catch (error) {
       console.warn(
-        `Error reading ~/.continue/.env file: ${error instanceof Error ? error.message : String(error)}`,
+        `Error reading ~/.codepiper/.env file: ${error instanceof Error ? error.message : String(error)}`,
       );
       return undefined;
     }

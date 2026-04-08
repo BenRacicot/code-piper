@@ -85,7 +85,7 @@ If a model is missing, remix a similar one and set the `model` field to the targ
 
 Use a Tetrate model block from the Hub in your local agent configuration:
 
-```yaml title="~/.continue/config.yaml"
+```yaml title="~/.codepiper/config.yaml"
 name: Local Agent
 version: 1.0.0
 schema: v1
@@ -105,7 +105,7 @@ context:
 
 Or define the model directly:
 
-```yaml title="~/.continue/config.yaml"
+```yaml title="~/.codepiper/config.yaml"
 name: Local Agent
 version: 1.0.0
 schema: v1
@@ -179,7 +179,7 @@ context:
 Name the file `my-claude-4-model.yaml` so you can reference it in the Agent.
 </Info>
 
-```yaml title="~/.continue/models/my-claude-4-model.yaml"
+```yaml title="~/.codepiper/models/my-claude-4-model.yaml"
 name: Claude Sonnet 4
 version: 1.0.1
 schema: v1
@@ -197,7 +197,7 @@ models:
 ```
 Reference it as `my-claude-4-model` in your Agent configuration:
 
-```yaml title="~/.continue/agents/simple-agent.yaml"
+```yaml title="~/.codepiper/agents/simple-agent.yaml"
 name: Simple Agent
 version: 1.0.0
 schema: v1

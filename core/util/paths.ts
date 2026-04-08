@@ -24,15 +24,15 @@ export function setConfigFilePermissions(filePath: string): void {
   }
 }
 
-const CONTINUE_GLOBAL_DIR = (() => {
-  const configPath = process.env.CONTINUE_GLOBAL_DIR;
+const CODEPIPER_GLOBAL_DIR = (() => {
+  const configPath = process.env.CODEPIPER_GLOBAL_DIR;
   if (configPath) {
     // Convert relative path to absolute paths based on current working directory
     return path.isAbsolute(configPath)
       ? configPath
       : path.resolve(process.cwd(), configPath);
   }
-  return path.join(os.homedir(), ".continue");
+  return path.join(os.homedir(), ".codepiper");
 })();
 
 // export const DEFAULT_CONFIG_TS_CONTENTS = `import { Config } from "./types"\n\nexport function modifyConfig(config: Config): Config {
@@ -44,11 +44,11 @@ export const DEFAULT_CONFIG_TS_CONTENTS = `export function modifyConfig(config: 
 }`;
 
 export function getChromiumPath(): string {
-  return path.join(getContinueUtilsPath(), ".chromium-browser-snapshots");
+  return path.join(getCodePiperUtilsPath(), ".chromium-browser-snapshots");
 }
 
-export function getContinueUtilsPath(): string {
-  const utilsPath = path.join(getContinueGlobalPath(), ".utils");
+export function getCodePiperUtilsPath(): string {
+  const utilsPath = path.join(getCodePiperGlobalPath(), ".utils");
   if (!fs.existsSync(utilsPath)) {
     fs.mkdirSync(utilsPath);
   }
@@ -57,8 +57,8 @@ export function getContinueUtilsPath(): string {
 
 export function getGlobalContinueIgnorePath(): string {
   const continueIgnorePath = path.join(
-    getContinueGlobalPath(),
-    ".continueignore",
+    getCodePiperGlobalPath(),
+    ".codepiperignore",
   );
   if (!fs.existsSync(continueIgnorePath)) {
     fs.writeFileSync(continueIgnorePath, "");
@@ -66,9 +66,9 @@ export function getGlobalContinueIgnorePath(): string {
   return continueIgnorePath;
 }
 
-export function getContinueGlobalPath(): string {
-  // This is ~/.continue on mac/linux
-  const continuePath = CONTINUE_GLOBAL_DIR;
+export function getCodePiperGlobalPath(): string {
+  // This is ~/.codepiper on mac/linux
+  const continuePath = CODEPIPER_GLOBAL_DIR;
   if (!fs.existsSync(continuePath)) {
     fs.mkdirSync(continuePath);
   }
@@ -76,7 +76,7 @@ export function getContinueGlobalPath(): string {
 }
 
 export function getSessionsFolderPath(): string {
-  const sessionsPath = path.join(getContinueGlobalPath(), "sessions");
+  const sessionsPath = path.join(getCodePiperGlobalPath(), "sessions");
   if (!fs.existsSync(sessionsPath)) {
     fs.mkdirSync(sessionsPath);
   }
@@ -84,7 +84,7 @@ export function getSessionsFolderPath(): string {
 }
 
 export function getIndexFolderPath(): string {
-  const indexPath = path.join(getContinueGlobalPath(), "index");
+  const indexPath = path.join(getCodePiperGlobalPath(), "index");
   if (!fs.existsSync(indexPath)) {
     fs.mkdirSync(indexPath);
   }
@@ -96,7 +96,7 @@ export function getGlobalContextFilePath(): string {
 }
 
 export function getSharedConfigFilePath(): string {
-  return path.join(getContinueGlobalPath(), "sharedConfig.json");
+  return path.join(getCodePiperGlobalPath(), "sharedConfig.json");
 }
 
 export function getSessionFilePath(sessionId: string): string {
@@ -112,12 +112,12 @@ export function getSessionsListPath(): string {
 }
 
 export function getConfigJsonPath(): string {
-  const p = path.join(getContinueGlobalPath(), "config.json");
+  const p = path.join(getCodePiperGlobalPath(), "config.json");
   return p;
 }
 
 export function getConfigYamlPath(ideType?: IdeType): string {
-  const p = path.join(getContinueGlobalPath(), "config.yaml");
+  const p = path.join(getCodePiperGlobalPath(), "config.yaml");
   const exists = fs.existsSync(p);
   const isEmpty = exists && fs.readFileSync(p, "utf8").trim() === "";
   const needsCreation = !exists && !fs.existsSync(getConfigJsonPath());
@@ -138,12 +138,12 @@ export function getPrimaryConfigFilePath(): string {
 }
 
 export function getConfigTsPath(): string {
-  const p = path.join(getContinueGlobalPath(), "config.ts");
+  const p = path.join(getCodePiperGlobalPath(), "config.ts");
   if (!fs.existsSync(p)) {
     fs.writeFileSync(p, DEFAULT_CONFIG_TS_CONTENTS);
   }
 
-  const typesPath = path.join(getContinueGlobalPath(), "types");
+  const typesPath = path.join(getCodePiperGlobalPath(), "types");
   if (!fs.existsSync(typesPath)) {
     fs.mkdirSync(typesPath);
   }
@@ -151,14 +151,14 @@ export function getConfigTsPath(): string {
   if (!fs.existsSync(corePath)) {
     fs.mkdirSync(corePath);
   }
-  const packageJsonPath = path.join(getContinueGlobalPath(), "package.json");
+  const packageJsonPath = path.join(getCodePiperGlobalPath(), "package.json");
   if (!fs.existsSync(packageJsonPath)) {
     fs.writeFileSync(
       packageJsonPath,
       JSON.stringify({
-        name: "continue-config",
+        name: "codepiper-config",
         version: "1.0.0",
-        description: "My Continue Configuration",
+        description: "My CodePiper Configuration",
         main: "config.js",
       }),
     );
@@ -170,11 +170,11 @@ export function getConfigTsPath(): string {
 
 export function getConfigJsPath(): string {
   // Do not create automatically
-  return path.join(getContinueGlobalPath(), "out", "config.js");
+  return path.join(getCodePiperGlobalPath(), "out", "config.js");
 }
 
 export function getTsConfigPath(): string {
-  const tsConfigPath = path.join(getContinueGlobalPath(), "tsconfig.json");
+  const tsConfigPath = path.join(getCodePiperGlobalPath(), "tsconfig.json");
   if (!fs.existsSync(tsConfigPath)) {
     fs.writeFileSync(
       tsConfigPath,
@@ -207,9 +207,12 @@ export function getTsConfigPath(): string {
   return tsConfigPath;
 }
 
-export function getContinueRcPath(): string {
+export function getCodePiperRcPath(): string {
   // Disable indexing of the config folder to prevent infinite loops
-  const continuercPath = path.join(getContinueGlobalPath(), ".continuerc.json");
+  const continuercPath = path.join(
+    getCodePiperGlobalPath(),
+    ".codepiperrc.json",
+  );
   if (!fs.existsSync(continuercPath)) {
     fs.writeFileSync(
       continuercPath,
@@ -226,7 +229,7 @@ export function getContinueRcPath(): string {
 }
 
 function getDevDataPath(): string {
-  const sPath = path.join(getContinueGlobalPath(), "dev_data");
+  const sPath = path.join(getCodePiperGlobalPath(), "dev_data");
   if (!fs.existsSync(sPath)) {
     fs.mkdirSync(sPath);
   }
@@ -290,7 +293,7 @@ export function editConfigFile(
 }
 
 function getMigrationsFolderPath(): string {
-  const migrationsPath = path.join(getContinueGlobalPath(), ".migrations");
+  const migrationsPath = path.join(getCodePiperGlobalPath(), ".migrations");
   if (!fs.existsSync(migrationsPath)) {
     fs.mkdirSync(migrationsPath);
   }
@@ -340,7 +343,7 @@ export function getDocsSqlitePath(): string {
 }
 
 export function getRemoteConfigsFolderPath(): string {
-  const dir = path.join(getContinueGlobalPath(), ".configs");
+  const dir = path.join(getCodePiperGlobalPath(), ".configs");
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   }
@@ -374,8 +377,8 @@ export function getConfigJsPathForRemote(
   return path.join(getPathToRemoteConfig(remoteConfigServerUrl), "config.js");
 }
 
-export function getContinueDotEnv(): { [key: string]: string } {
-  const filepath = path.join(getContinueGlobalPath(), ".env");
+export function getCodePiperDotEnv(): { [key: string]: string } {
+  const filepath = path.join(getCodePiperGlobalPath(), ".env");
   if (fs.existsSync(filepath)) {
     return dotenv.parse(fs.readFileSync(filepath));
   }
@@ -383,7 +386,7 @@ export function getContinueDotEnv(): { [key: string]: string } {
 }
 
 export function getLogsDirPath(): string {
-  const logsPath = path.join(getContinueGlobalPath(), "logs");
+  const logsPath = path.join(getCodePiperGlobalPath(), "logs");
   if (!fs.existsSync(logsPath)) {
     fs.mkdirSync(logsPath);
   }
@@ -399,7 +402,7 @@ export function getPromptLogsPath(): string {
 }
 
 export function getGlobalFolderWithName(name: string): string {
-  return path.join(getContinueGlobalPath(), name);
+  return path.join(getCodePiperGlobalPath(), name);
 }
 
 export function getGlobalPromptsPath(): string {
@@ -431,11 +434,11 @@ export function readAllGlobalPromptFiles(
 }
 
 export function getRepoMapFilePath(): string {
-  return path.join(getContinueUtilsPath(), "repo_map.txt");
+  return path.join(getCodePiperUtilsPath(), "repo_map.txt");
 }
 
 export function getEsbuildBinaryPath(): string {
-  return path.join(getContinueUtilsPath(), "esbuild");
+  return path.join(getCodePiperUtilsPath(), "esbuild");
 }
 
 export function migrateV1DevDataFiles() {
@@ -460,15 +463,15 @@ export function migrateV1DevDataFiles() {
 }
 
 export function getLocalEnvironmentDotFilePath(): string {
-  return path.join(getContinueGlobalPath(), ".local");
+  return path.join(getCodePiperGlobalPath(), ".local");
 }
 
 export function getStagingEnvironmentDotFilePath(): string {
-  return path.join(getContinueGlobalPath(), ".staging");
+  return path.join(getCodePiperGlobalPath(), ".staging");
 }
 
 export function getDiffsDirectoryPath(): string {
-  const diffsPath = path.join(getContinueGlobalPath(), ".diffs"); // .replace(/^C:/, "c:"); ??
+  const diffsPath = path.join(getCodePiperGlobalPath(), ".diffs"); // .replace(/^C:/, "c:"); ??
   if (!fs.existsSync(diffsPath)) {
     fs.mkdirSync(diffsPath, {
       recursive: true,

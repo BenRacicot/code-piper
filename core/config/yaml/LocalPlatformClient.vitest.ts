@@ -104,21 +104,21 @@ describe("LocalPlatformClient", () => {
   });
 
   describe("searches for secrets in local .env files", () => {
-    let getContinueDotEnv: Mock;
+    let getCodePiperDotEnv: Mock;
     beforeEach(async () => {
       const utilPaths = await import("../../util/paths");
-      getContinueDotEnv = vi.fn(() => envKeyValues);
-      utilPaths.getContinueDotEnv = getContinueDotEnv;
+      getCodePiperDotEnv = vi.fn(() => envKeyValues);
+      utilPaths.getCodePiperDotEnv = getCodePiperDotEnv;
     });
 
-    test("should be able to get secrets from ~/.continue/.env files", async () => {
+    test("should be able to get secrets from ~/.codepiper/.env files", async () => {
       const localPlatformClient = new LocalPlatformClient(
         null,
         testControlPlaneClient,
         testIde,
       );
       const resolvedFQSNs = await localPlatformClient.resolveFQSNs([testFQSN]);
-      expect(getContinueDotEnv).toHaveBeenCalled();
+      expect(getCodePiperDotEnv).toHaveBeenCalled();
       expect(resolvedFQSNs.length).toBe(1);
       expect(
         (resolvedFQSNs[0] as SecretResult & { value: unknown })?.value,
@@ -250,7 +250,7 @@ describe("LocalPlatformClient", () => {
 
       // Ensure secrets are not found in local .env files
       const utilPaths = await import("../../util/paths");
-      utilPaths.getContinueDotEnv = vi.fn(() => ({}));
+      utilPaths.getCodePiperDotEnv = vi.fn(() => ({}));
 
       // Ensure secrets are not found in workspace .env files
       testIde.fileExists = vi.fn(async () => false);
@@ -351,10 +351,10 @@ describe("LocalPlatformClient", () => {
       expect(result?.secretLocation?.secretType).toBe(SecretType.Organization);
     });
 
-    test("should prioritize local ~/.continue/.env file over process.env", async () => {
+    test("should prioritize local ~/.codepiper/.env file over process.env", async () => {
       const localEnvFileValue = "secret-from-local-dot-continue-env";
       const utilPaths = await import("../../util/paths");
-      utilPaths.getContinueDotEnv = vi.fn(() => ({
+      utilPaths.getCodePiperDotEnv = vi.fn(() => ({
         [testFQSN.secretName]: localEnvFileValue,
       }));
 

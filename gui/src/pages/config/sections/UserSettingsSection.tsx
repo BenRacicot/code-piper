@@ -13,7 +13,7 @@ import { updateConfig } from "../../../redux/slices/configSlice";
 import { selectCurrentOrg } from "../../../redux/slices/profilesSlice";
 import { setLocalStorage } from "../../../util/localStorage";
 import { ConfigHeader } from "../components/ConfigHeader";
-import { ContinueFeaturesMenu } from "../components/ContinueFeaturesMenu";
+import { CodePiperFeaturesMenu } from "../components/CodePiperFeaturesMenu";
 import { UserSetting } from "../components/UserSetting";
 
 export function UserSettingsSection() {
@@ -174,7 +174,7 @@ export function UserSettingsSection() {
                 <UserSetting
                   type="toggle"
                   title="Allow Anonymous Telemetry"
-                  description="Allows Continue to send anonymous telemetry."
+                  description="Allows CodePiper to send anonymous telemetry."
                   value={allowAnonymousTelemetry}
                   disabled={disableTelemetryToggle}
                   onChange={(value) =>
@@ -297,7 +297,7 @@ export function UserSettingsSection() {
                   <UserSetting
                     type="toggle"
                     title="Only use system message tools"
-                    description=" Continue will not attempt to use native tool calling and will only use system message tools."
+                    description=" CodePiper will not attempt to use native tool calling and will only use system message tools."
                     value={onlyUseSystemMessageTools}
                     onChange={(value) =>
                       handleUpdate({ onlyUseSystemMessageTools: value })
@@ -323,7 +323,7 @@ export function UserSettingsSection() {
                   />
 
                   {hasContinueEmail && (
-                    <ContinueFeaturesMenu
+                    <CodePiperFeaturesMenu
                       enableStaticContextualization={
                         enableStaticContextualization
                       }

@@ -1,10 +1,10 @@
 import fs from "fs";
 import { IDE } from "..";
-import { getGlobalContinueIgnorePath } from "../util/paths";
+import { getGlobalCodePiperIgnorePath } from "../util/paths";
 import { gitIgArrayFromFile } from "./ignore";
 
 export const getGlobalContinueIgArray = () => {
-  const contents = fs.readFileSync(getGlobalContinueIgnorePath(), "utf8");
+  const contents = fs.readFileSync(getGlobalCodePiperIgnorePath(), "utf8");
   return gitIgArrayFromFile(contents);
 };
 
@@ -14,7 +14,7 @@ export const getWorkspaceContinueIgArray = async (ide: IDE) => {
     async (accPromise, dir) => {
       const acc = await accPromise;
       try {
-        const contents = await ide.readFile(`${dir}/.continueignore`);
+        const contents = await ide.readFile(`${dir}/.codepiperignore`);
         return [...acc, ...gitIgArrayFromFile(contents)];
       } catch (err) {
         console.error(err);

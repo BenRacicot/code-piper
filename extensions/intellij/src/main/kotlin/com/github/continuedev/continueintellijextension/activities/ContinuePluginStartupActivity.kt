@@ -5,7 +5,7 @@ import com.github.continuedev.continueintellijextension.auth.AuthListener
 import com.github.continuedev.continueintellijextension.auth.ContinueAuthService
 import com.github.continuedev.continueintellijextension.auth.ControlPlaneSessionInfo
 import com.github.continuedev.continueintellijextension.browser.ContinueBrowserService.Companion.getBrowser
-import com.github.continuedev.continueintellijextension.constants.getContinueGlobalPath
+import com.github.continuedev.continueintellijextension.constants.getCodePiperGlobalPath
 import com.github.continuedev.continueintellijextension.`continue`.*
 import com.github.continuedev.continueintellijextension.listeners.ContinuePluginSelectionListener
 import com.github.continuedev.continueintellijextension.services.ContinueExtensionSettings
@@ -63,7 +63,7 @@ fun showTutorial(project: Project) {
                 content = content.replace("[Cmd + I]", "[Ctrl + I]")
                 content = content.replace("⌘", "⌃")
             }
-            val filepath = Paths.get(getContinueGlobalPath(), tutorialFileName).toString()
+            val filepath = Paths.get(getCodePiperGlobalPath(), tutorialFileName).toString()
             File(filepath).writeText(content)
             val virtualFile = LocalFileSystem.getInstance().findFileByPath(filepath)
 

@@ -144,17 +144,17 @@ describe("hookConfig", () => {
       projectDir = path.join(tmpDir, "project");
       fs.mkdirSync(fakeHome, { recursive: true });
       fs.mkdirSync(projectDir, { recursive: true });
-      // Override CONTINUE_GLOBAL_DIR so that user-global settings
-      // from the real ~/.continue/settings.json don't leak into tests
-      originalContinueGlobalDir = process.env.CONTINUE_GLOBAL_DIR;
-      process.env.CONTINUE_GLOBAL_DIR = path.join(fakeHome, ".continue");
+      // Override CODEPIPER_GLOBAL_DIR so that user-global settings
+      // from the real ~/.codepiper/settings.json don't leak into tests
+      originalContinueGlobalDir = process.env.CODEPIPER_GLOBAL_DIR;
+      process.env.CODEPIPER_GLOBAL_DIR = path.join(fakeHome, ".codepiper");
     });
 
     afterEach(() => {
       if (originalContinueGlobalDir === undefined) {
-        delete process.env.CONTINUE_GLOBAL_DIR;
+        delete process.env.CODEPIPER_GLOBAL_DIR;
       } else {
-        process.env.CONTINUE_GLOBAL_DIR = originalContinueGlobalDir;
+        process.env.CODEPIPER_GLOBAL_DIR = originalContinueGlobalDir;
       }
       fs.rmSync(tmpDir, { recursive: true, force: true });
     });

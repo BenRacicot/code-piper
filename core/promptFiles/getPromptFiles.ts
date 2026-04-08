@@ -7,7 +7,10 @@ import {
 } from ".";
 import { IDE } from "..";
 import { walkDir } from "../indexing/walkDir";
-import { getContinueGlobalPath, readAllGlobalPromptFiles } from "../util/paths";
+import {
+  getCodePiperGlobalPath,
+  readAllGlobalPromptFiles,
+} from "../util/paths";
 import { joinPathsToUri } from "../util/uri";
 
 export async function getPromptFilesFromDir(
@@ -62,11 +65,11 @@ export async function getAllPromptFiles(
     await Promise.all(fullDirs.map((dir) => getPromptFilesFromDir(ide, dir)))
   ).flat();
 
-  // Also read from ~/.continue/prompts and ~/.continue/rules
+  // Also read from ~/.codepiper/prompts and ~/.codepiper/rules
   promptFiles.push(...readAllGlobalPromptFiles());
 
   const promptFilesFromRulesDirectory = readAllGlobalPromptFiles(
-    path.join(getContinueGlobalPath(), RULES_DIR_NAME),
+    path.join(getCodePiperGlobalPath(), RULES_DIR_NAME),
   );
   promptFiles.push(...promptFilesFromRulesDirectory);
 

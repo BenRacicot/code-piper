@@ -142,7 +142,7 @@ continue_server.dist
 Icon
 Icon?
 
-.continuerc.json
+.codepiperrc.json
 .aider*
 
 *.notes.md

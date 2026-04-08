@@ -15,7 +15,7 @@ import { SYSTEM_PROMPT_DOT_FILE } from "./getWorkspaceContinueRuleDotFiles";
 import { SUPPORTED_AGENT_FILES } from "./markdown";
 export function isContinueConfigRelatedUri(uri: string): boolean {
   return (
-    uri.endsWith(".continuerc.json") ||
+    uri.endsWith(".codepiperrc.json") ||
     uri.endsWith(".prompt") ||
     !!SUPPORTED_AGENT_FILES.find((file) => uri.endsWith(`/${file}`)) ||
     uri.endsWith(SYSTEM_PROMPT_DOT_FILE) ||
@@ -116,7 +116,7 @@ export function getDotContinueSubDirs(
     );
   }
 
-  // ~/.continue/<subDirName>
+  // ~/.codepiper/<subDirName>
   if (options.includeGlobal) {
     fullDirs.push(localPathToUri(getGlobalFolderWithName(subDirName)));
   }
@@ -125,7 +125,7 @@ export function getDotContinueSubDirs(
 }
 
 /**
- * This method searches in both ~/.continue and workspace .continue
+ * This method searches in both ~/.codepiper and workspace .continue
  * for all YAML/Markdown files in the specified subdirectory, for example .continue/assistants or .continue/prompts
  */
 export async function getAllDotContinueDefinitionFiles(

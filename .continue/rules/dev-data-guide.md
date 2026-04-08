@@ -17,8 +17,8 @@ Development data (dev data) captures detailed information about how developers i
 
 ### Storage Locations
 
-- **Default storage**: `~/.continue/dev_data/`
-- **Event files**: `~/.continue/dev_data/{version}/{eventName}.jsonl`
+- **Default storage**: `~/.codepiper/dev_data/`
+- **Event files**: `~/.codepiper/dev_data/{version}/{eventName}.jsonl`
 
 ## Event Types and Schemas
 
@@ -142,7 +142,7 @@ data:
 
 ### Debugging Dev Data Issues
 
-1. **Check local storage**: Verify files are being created in `~/.continue/dev_data/`
+1. **Check local storage**: Verify files are being created in `~/.codepiper/dev_data/`
 2. **Validate schemas**: Ensure event data matches expected schema format
 3. **Review configuration**: Check `data` blocks in Continue config
 4. **Test endpoints**: Verify remote endpoints are reachable and accepting data

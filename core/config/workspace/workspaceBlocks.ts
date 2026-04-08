@@ -7,7 +7,7 @@ import {
 } from "@continuedev/config-yaml";
 import * as YAML from "yaml";
 import { IDE } from "../..";
-import { getContinueGlobalPath } from "../../util/paths";
+import { getCodePiperGlobalPath } from "../../util/paths";
 import { localPathToUri } from "../../util/pathToUri";
 import { joinPathsToUri } from "../../util/uri";
 
@@ -188,7 +188,7 @@ export async function createNewGlobalRuleFile(
   baseFilename?: string,
 ): Promise<void> {
   try {
-    const globalDir = localPathToUri(getContinueGlobalPath());
+    const globalDir = localPathToUri(getCodePiperGlobalPath());
 
     // Create the rules subdirectory within the global directory
     const rulesDir = joinPathsToUri(globalDir, "rules");

@@ -11,7 +11,7 @@ import {
   getConfigJsonPath,
   getConfigTsPath,
   getConfigYamlPath,
-  getContinueGlobalPath,
+  getCodePiperGlobalPath,
 } from "core/util/paths";
 import { v4 as uuidv4 } from "uuid";
 import * as vscode from "vscode";
@@ -142,7 +142,7 @@ export class VsCodeExtension {
             );
           } else if (selection === "Select different model") {
             vscode.commands.executeCommand(
-              "continue.openTabAutocompleteConfigMenu",
+              "codepiper.openTabAutocompleteConfigMenu",
             );
           }
         });
@@ -265,7 +265,7 @@ export class VsCodeExtension {
     // Sidebar
     context.subscriptions.push(
       vscode.window.registerWebviewViewProvider(
-        "continue.continueGUIView",
+        "codepiper.codePiperGUIView",
         this.sidebar,
         {
           webviewOptions: { retainContextWhenHidden: true },
@@ -414,7 +414,7 @@ export class VsCodeExtension {
 
     context.subscriptions.push(
       vscode.window.registerWebviewViewProvider(
-        "continue.continueConsoleView",
+        "codepiper.codePiperConsoleView",
         this.consoleView,
       ),
     );
@@ -469,7 +469,7 @@ export class VsCodeExtension {
     });
 
     // watch global rules directory for changes
-    const globalRulesDir = path.join(getContinueGlobalPath(), "rules");
+    const globalRulesDir = path.join(getCodePiperGlobalPath(), "rules");
     if (fs.existsSync(globalRulesDir)) {
       fs.watch(globalRulesDir, { recursive: true }, (eventType, filename) => {
         if (filename && filename.endsWith(".md")) {
@@ -564,7 +564,7 @@ export class VsCodeExtension {
       if (e.provider.id === env.AUTH_TYPE) {
         void vscode.commands.executeCommand(
           "setContext",
-          "continue.isSignedInToControlPlane",
+          "codepiper.isSignedInToControlPlane",
           true,
         );
 
@@ -575,7 +575,7 @@ export class VsCodeExtension {
       } else {
         void vscode.commands.executeCommand(
           "setContext",
-          "continue.isSignedInToControlPlane",
+          "codepiper.isSignedInToControlPlane",
           false,
         );
 

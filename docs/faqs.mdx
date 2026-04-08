@@ -286,7 +286,7 @@ When Continue encounters `${{ secrets.X }}`, it searches these sources **in orde
 
 1. **Workspace `.env` file**: `<workspace-root>/.env`
 2. **Workspace Continue `.env` file**: `<workspace-root>/.continue/.env`
-3. **Global `.env` file**: `~/.continue/.env`
+3. **Global `.env` file**: `~/.codepiper/.env`
 4. **Process environment variables**: Standard system environment variables
 
 <Warning>
@@ -369,7 +369,7 @@ This feature allows you to maintain consistent model configurations across teams
 
 ## How do I reset the state of the extension?
 
-Continue stores its data in the `~/.continue` directory (`%USERPROFILE%\.continue` on Windows).
+Continue stores its data in the `~/.codepiper` directory (`%USERPROFILE%\.codepiper` on Windows).
 
 If you'd like to perform a clean reset of the extension, including removing all configuration files, indices, etc, you can remove this directory, uninstall, and then reinstall.
 

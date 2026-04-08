@@ -2,7 +2,7 @@ package com.github.continuedev.continueintellijextension.`continue`
 
 import com.github.continuedev.continueintellijextension.*
 import com.github.continuedev.continueintellijextension.constants.ContinueConstants
-import com.github.continuedev.continueintellijextension.constants.getContinueGlobalPath
+import com.github.continuedev.continueintellijextension.constants.getCodePiperGlobalPath
 import com.github.continuedev.continueintellijextension.`continue`.file.FileUtils
 import com.github.continuedev.continueintellijextension.error.ContinueSentryService
 import com.github.continuedev.continueintellijextension.services.ContinueExtensionSettings
@@ -98,7 +98,7 @@ class IntelliJIDE(
         "*.eot", "*.cur", "*.avi", "*.mpg", "*.mpeg", "*.mov", "*.mp3",
         "*.mkv", "*.webm", "*.jar", "*.onnx", "*.parquet", "*.pqt",
         "*.wav", "*.webp", "*.wasm", "*.plist", "*.profraw", "*.gcda",
-        "*.gcno", "go.sum", "*.gitignore", "*.gitkeep", "*.continueignore",
+        "*.gcno", "go.sum", "*.gitignore", "*.gitkeep", "*.codepiperignore",
         "*.csv", "*.uasset", "*.pdb", "*.bin", "*.pag", "*.swp", "*.jsonl"
     )
     
@@ -266,7 +266,7 @@ class IntelliJIDE(
     }
 
     override suspend fun getContinueDir(): String {
-        return getContinueGlobalPath()
+        return getCodePiperGlobalPath()
     }
 
     override suspend fun openFile(path: String) =
@@ -430,7 +430,7 @@ class IntelliJIDE(
                     "--iglob",
                     pattern,
                     "--ignore-file",
-                    ".continueignore",
+                    ".codepiperignore",
                     "--ignore-file",
                     ".gitignore",
                     "--glob",
@@ -468,7 +468,7 @@ class IntelliJIDE(
                     ripgrep,
                     "-i",
                     "--ignore-file",
-                    ".continueignore",
+                    ".codepiperignore",
                     "--ignore-file",
                     ".gitignore",
                     "-C",

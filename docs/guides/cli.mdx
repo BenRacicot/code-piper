@@ -55,7 +55,7 @@ echo "$(git diff) Generate a conventional commit name for the current git change
 
 `cn` uses [`config.yaml`](/reference), the exact same configuration file as Continue. This means that you can log in to [Continue Mission Control](/mission-control) or use your existing local configuration.
 
-To switch between configurations, you can use the `/config` slash command in `cn`, or you can start it with the `--config` flag (e.g. `cn --config continuedev/default-cli-config` or `cn --config ~/.continue/config.yaml`).
+To switch between configurations, you can use the `/config` slash command in `cn`, or you can start it with the `--config` flag (e.g. `cn --config continuedev/default-cli-config` or `cn --config ~/.codepiper/config.yaml`).
 
 ### How to Add Custom Models
 
@@ -71,7 +71,7 @@ Learn how to add custom models [here](/customize/overview). Then, you can use th
 
 #### How to Set Tool Permissions
 
-`cn` includes a tool permission system to make sure you approve of the agent's actions. It will begin with minimal permissions but as you approve tool calls, it will add policies to `~/.continue/permissions.yaml` to remember your preferences.
+`cn` includes a tool permission system to make sure you approve of the agent's actions. It will begin with minimal permissions but as you approve tool calls, it will add policies to `~/.codepiper/permissions.yaml` to remember your preferences.
 
 If you want to explicitly allow or deny tools for a single session, you can use the command line flags `--allow`, `--ask`, and `--exclude`. For example:
 
@@ -94,6 +94,6 @@ If you wish to run an automation on behalf of your organization you can obtain a
 
 ## Troubleshooting
 
-Run `cn` with the `--verbose` flag to see more detailed logs. These will be output to `~/.continue/logs/cn.log`.
+Run `cn` with the `--verbose` flag to see more detailed logs. These will be output to `~/.codepiper/logs/cn.log`.
 
 If you have feedback on the beta, please [leave feedback in the GitHub discussion](https://github.com/continuedev/continue/discussions/7307).

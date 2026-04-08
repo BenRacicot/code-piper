@@ -224,8 +224,8 @@ export function History() {
           Chat history is saved to{" "}
           <span className="italic">
             {platform === "windows"
-              ? "%USERPROFILE%/.continue"
-              : "~/.continue/sessions"}
+              ? "%USERPROFILE%/.codepiper"
+              : "~/.codepiper/sessions"}
           </span>
         </span>
       </div>

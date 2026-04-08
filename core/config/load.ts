@@ -53,7 +53,7 @@ import {
   getConfigJsPath,
   getConfigJsPathForRemote,
   getConfigTsPath,
-  getContinueDotEnv,
+  getCodePiperDotEnv,
   getEsbuildBinaryPath,
 } from "../util/paths";
 import { localPathToUri } from "../util/pathToUri";
@@ -81,7 +81,7 @@ export function resolveSerializedConfig(
   if (config.env && Array.isArray(config.env)) {
     const env = {
       ...process.env,
-      ...getContinueDotEnv(),
+      ...getCodePiperDotEnv(),
     };
 
     config.env.forEach((envVar) => {
@@ -703,25 +703,25 @@ async function handleEsbuildInstallation(
   _ideType: IdeType,
 ): Promise<boolean> {
   // Only check when config.ts is going to be used; never auto-install.
-  const installCmd = "npm i esbuild@x.x.x --prefix ~/.continue";
+  const installCmd = "npm i esbuild@x.x.x --prefix ~/.codepiper";
 
   // Try to detect a user-installed esbuild (normal resolution)
   try {
     await import("esbuild");
     return true; // available
   } catch {
-    // Try resolving from ~/.continue/node_modules as a courtesy
+    // Try resolving from ~/.codepiper/node_modules as a courtesy
     try {
       const userEsbuild = path.join(
         os.homedir(),
-        ".continue",
+        ".codepiper",
         "node_modules",
         "esbuild",
       );
       const candidate = require.resolve("esbuild", { paths: [userEsbuild] });
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       require(candidate);
-      return true; // available via ~/.continue
+      return true; // available via ~/.codepiper
     } catch {
       // Not available → show friendly instructions and opt out of building
       await ide.showToast(
@@ -747,7 +747,7 @@ async function tryBuildConfigTs() {
     }
   } catch (e) {
     console.log(
-      `Build error. Please check your ~/.continue/config.ts file: ${e}`,
+      `Build error. Please check your ~/.codepiper/config.ts file: ${e}`,
     );
   }
 }

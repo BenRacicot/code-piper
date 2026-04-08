@@ -23,6 +23,7 @@ export enum AuthType {
   WorkOsProd = "continue",
   WorkOsStaging = "continue-staging",
   OnPrem = "on-prem",
+  None = "none",
 }
 
 export interface HubEnv {
@@ -40,7 +41,14 @@ export interface OnPremEnv {
   APP_URL: string;
 }
 
-export type ControlPlaneEnv = HubEnv | OnPremEnv;
+export interface LocalOnlyEnv {
+  AUTH_TYPE: AuthType.None;
+  DEFAULT_CONTROL_PLANE_PROXY_URL: string;
+  CONTROL_PLANE_URL: string;
+  APP_URL: string;
+}
+
+export type ControlPlaneEnv = HubEnv | OnPremEnv | LocalOnlyEnv;
 
 export function isHubEnv(env: ControlPlaneEnv): env is HubEnv {
   return (

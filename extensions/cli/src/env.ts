@@ -11,5 +11,5 @@ export const env = {
     process.env.WORKOS_CLIENT_ID ?? "client_01J0FW6XN8N2XJAECF7NE0Y65J",
   appUrl: process.env.HUB_URL || "https://continue.dev",
   continueHome:
-    process.env.CONTINUE_GLOBAL_DIR || path.join(os.homedir(), ".continue"),
+    process.env.CODEPIPER_GLOBAL_DIR || path.join(os.homedir(), ".codepiper"),
 };

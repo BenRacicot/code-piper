@@ -2,7 +2,7 @@
  * Hook configuration loader.
  *
  * Loads hooks from settings files in the same locations as Claude Code:
- * - ~/.continue/settings.json  (user-global)
+ * - ~/.codepiper/settings.json  (user-global)
  * - .continue/settings.json    (project, committable)
  * - .continue/settings.local.json (project-local, gitignored)
  *
@@ -73,7 +73,7 @@ function mergeHooksConfigs(
 function getSettingsFilePaths(cwd: string, homeDir?: string): string[] {
   const home = homeDir ?? os.homedir();
   const continueHome =
-    process.env.CONTINUE_GLOBAL_DIR || path.join(home, ".continue");
+    process.env.CODEPIPER_GLOBAL_DIR || path.join(home, ".codepiper");
 
   return [
     // User-global (lowest precedence)

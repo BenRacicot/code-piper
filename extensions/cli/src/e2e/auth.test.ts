@@ -43,7 +43,7 @@ describe("E2E: Authentication", () => {
         args: ["logout"],
         env: {
           HOME: context.testDir,
-          CONTINUE_GLOBAL_DIR: path.join(context.testDir, ".continue"),
+          CODEPIPER_GLOBAL_DIR: path.join(context.testDir, ".codepiper"),
         },
       });
 
@@ -63,7 +63,7 @@ describe("E2E: Authentication", () => {
         args: ["logout"],
         env: {
           HOME: context.testDir,
-          CONTINUE_GLOBAL_DIR: path.join(context.testDir, ".continue"),
+          CODEPIPER_GLOBAL_DIR: path.join(context.testDir, ".codepiper"),
         },
       });
 
